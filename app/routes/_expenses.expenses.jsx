@@ -2,8 +2,9 @@ import { Link, Outlet, useLoaderData } from '@remix-run/react';
 import ExpensesList from '~/components/expenses/ExpensesList';
 import { FaPlus, FaDownload } from 'react-icons/fa';
 import { getExpenses } from '~/data/expenses.server';
-import { requireUserSession } from '~/data/auth.server';
 import { json } from '@remix-run/node';
+import { getUserIdFromSession } from '~/services/auth.server';
+
 export default function ExpensesLayout() {
   const expenses = useLoaderData();
   const hasExpenses = expenses && expenses.length > 0;
@@ -37,7 +38,9 @@ export default function ExpensesLayout() {
 }
 
 export async function loader({ request }) {
-  const userId = await requireUserSession(request);
+  console.log('expenses loader');
+  const userId = await getUserIdFromSession(request);
+  console.log(userId);
   const expenses = await getExpenses(userId);
   //return expenses; //return json(expenses); -- this is a RESPONSE
   return json(expenses, {

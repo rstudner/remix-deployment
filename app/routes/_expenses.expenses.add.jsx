@@ -5,7 +5,7 @@ import Modal from '~/components/util/Modal';
 import { addExpense } from '~/data/expenses.server';
 import { redirect } from '@remix-run/node';
 import { validateExpenseInput } from '~/data/validation.server';
-import { requireUserSession } from '~/data/auth.server';
+import { getUserIdFromSession } from '~/services/auth.server';
 
 export default function AddExpensePage() {
   const navigate = useNavigate();
@@ -23,9 +23,7 @@ export default function AddExpensePage() {
 }
 
 export async function action({ request }) {
-  const userId = await requireUserSession(request);
-  console.log('expenses.add action function');
-  console.log(`userId: ${userId}`);
+  const userId = await getUserIdFromSession(request);
   const formData = await request.formData();
   const expenseData = Object.fromEntries(formData);
 

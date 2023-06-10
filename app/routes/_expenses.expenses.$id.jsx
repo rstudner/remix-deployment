@@ -20,13 +20,6 @@ export default function UpdateExpensesPage() {
   );
 }
 
-// export async function loader({ params }) {
-//   console.log('EXPENSE ID LOADER');
-//   const expenseId = params.id;
-//   const expense = getExpense(expenseId);
-//   return expense;
-// }
-
 export async function action({ params, request }) {
   const expenseId = params.id;
 

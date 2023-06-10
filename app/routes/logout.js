@@ -1,9 +1,10 @@
 import { json } from '@remix-run/node';
-import { destroyUserSession } from '~/data/auth.server';
+import { destroyUserSession } from "~/services/auth.server";
 
-export function action({ request }) {
+export async function action({ request }) {
+  console.log('logout Action');
   if (request.method !== 'POST') {
     throw json('Invalid request method', { status: 400 });
   }
-  return destroyUserSession(request);
+  return await destroyUserSession(request);
 }

@@ -1,7 +1,9 @@
 import { Outlet } from '@remix-run/react';
 import ExpensesHeader from '~/components/navigation/ExpensesHeader';
 import expensesStyles from '~/styles/expenses.css';
-import { getUserFromSession } from '~/data/auth.server';
+import { getUserIdFromSession } from '~/services/auth.server';
+
+
 export default function ExpensesLayout() {
   return (
     <>
@@ -12,7 +14,8 @@ export default function ExpensesLayout() {
 }
 
 export function loader({ request }) {
-  return getUserFromSession(request);
+  console.log('expenses layout loader');
+  return getUserIdFromSession(request);
 }
 
 export function links() {
