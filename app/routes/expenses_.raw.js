@@ -1,9 +1,9 @@
 // /expenses/raw
 
 import { getExpenses } from '~/data/expenses.server';
-import { getUserIdFromSession } from '~/services/auth.server';
+import { getUserFromSession } from '~/services/auth.server';
 
 export async function loader({ request }) {
-  await getUserIdFromSession(request);
+  await getUserFromSession(request);
   return getExpenses();
 }

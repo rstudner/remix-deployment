@@ -1,6 +1,6 @@
 import { Outlet } from '@remix-run/react';
 import MainHeader from '~/components/navigation/MainHeader';
-import { getUserIdFromSession } from '~/services/auth.server';
+import { getUserFromSession } from '~/services/auth.server';
 
 import marketingStyles from '~/styles/marketing.css';
 
@@ -14,7 +14,7 @@ export default function MarketingLayout() {
 }
 
 export function loader({ request }) {
-  return getUserIdFromSession(request);
+  return getUserFromSession(request);
 }
 
 export function links() {

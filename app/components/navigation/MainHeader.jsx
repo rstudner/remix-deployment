@@ -27,7 +27,7 @@ function MainHeader() {
               </Form>
             )}
             {!userId && (
-              <Link to="/auth?mode=login" className="cta">
+              <Link to="/newauth" className="cta">
                 Login
               </Link>
             )}
