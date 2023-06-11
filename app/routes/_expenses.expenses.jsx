@@ -1,9 +1,9 @@
 import { Link, Outlet, useLoaderData } from '@remix-run/react';
 import ExpensesList from '~/components/expenses/ExpensesList';
-import { FaPlus, FaDownload } from 'react-icons/fa';
+import { FaDownload, FaPlus } from 'react-icons/fa';
 import { getExpenses } from '~/data/expenses.server';
 import { json } from '@remix-run/node';
-import { getUserFromSession } from '~/services/auth.server';
+import { authenticator } from '../services/auth.server';
 
 export default function ExpensesLayout() {
   const expenses = useLoaderData();
@@ -38,11 +38,10 @@ export default function ExpensesLayout() {
 }
 
 export async function loader({ request }) {
-  console.log('expenses loader');
-  const userId = await getUserFromSession(request);
-  console.log(userId);
-  const expenses = await getExpenses(userId);
-  //return expenses; //return json(expenses); -- this is a RESPONSE
+  let user = await authenticator.isAuthenticated(request, {
+    failureRedirect: '/auth',
+  });
+  const expenses = await getExpenses(user.id);
   return json(expenses, {
     headers: {
       'Cache-Control': 'max-age=3',

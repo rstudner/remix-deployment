@@ -13,6 +13,7 @@ export default function UpdateExpensesPage() {
     //navigate programmatically
     navigate('..');
   }
+
   return (
     <Modal onClose={closeHandler}>
       <ExpenseForm />

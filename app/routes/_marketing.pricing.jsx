@@ -1,4 +1,4 @@
-import { FaTrophy, FaHandshake } from 'react-icons/fa';
+import { FaHandshake, FaTrophy } from 'react-icons/fa';
 
 import PricingPlan from '~/components/marketing/PricingPlan';
 

@@ -1,7 +1,5 @@
 node_modules
 /.netlify
-/.netlify
-
 
 /.cache
 /build

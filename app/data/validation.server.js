@@ -15,15 +15,17 @@ export function validateExpenseInput(input) {
   let validationErrors = {};
 
   if (!isValidTitle(input.title)) {
-    validationErrors.title = 'Invalid expense title. Must be at most 30 characters long.'
+    validationErrors.title =
+      'Invalid expense title. Must be at most 30 characters long.';
   }
 
   if (!isValidAmount(input.amount)) {
-    validationErrors.amount = 'Invalid amount. Must be a number greater than zero.'
+    validationErrors.amount =
+      'Invalid amount. Must be a number greater than zero.';
   }
 
   if (!isValidDate(input.date)) {
-    validationErrors.date = 'Invalid date. Must be a date before today.'
+    validationErrors.date = 'Invalid date. Must be a date before today.';
   }
 
   if (Object.keys(validationErrors).length > 0) {
@@ -43,11 +45,12 @@ export function validateCredentials(input) {
   let validationErrors = {};
 
   if (!isValidEmail(input.email)) {
-    validationErrors.email = 'Invalid email address.'
+    validationErrors.email = 'Invalid email address.';
   }
 
   if (!isValidPassword(input.password)) {
-    validationErrors.password = 'Invalid password. Must be at least 7 characters long.'
+    validationErrors.password =
+      'Invalid password. Must be at least 7 characters long.';
   }
 
   if (Object.keys(validationErrors).length > 0) {

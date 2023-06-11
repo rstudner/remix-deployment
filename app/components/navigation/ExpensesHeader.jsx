@@ -3,7 +3,8 @@ import { Form, Link, NavLink, useLoaderData } from '@remix-run/react';
 import Logo from '../util/Logo';
 
 function ExpensesHeader() {
-  const userId = useLoaderData();
+  const user = useLoaderData();
+  const userId = user.id;
   return (
     <header id="main-header">
       <Logo />

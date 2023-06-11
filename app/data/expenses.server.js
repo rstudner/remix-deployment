@@ -1,4 +1,5 @@
 import { prisma } from './database.server';
+
 export async function addExpense(expenseData, userId) {
   try {
     return await prisma.expense.create({

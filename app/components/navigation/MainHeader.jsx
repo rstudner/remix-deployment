@@ -3,8 +3,11 @@ import { Form, Link, NavLink, useLoaderData } from '@remix-run/react';
 import Logo from '../util/Logo';
 
 function MainHeader() {
-  const userId = useLoaderData();
-
+  const user = useLoaderData();
+  let userId = undefined;
+  if (user) {
+    userId = user.id;
+  }
   return (
     <header id="main-header">
       <Logo />
@@ -27,7 +30,7 @@ function MainHeader() {
               </Form>
             )}
             {!userId && (
-              <Link to="/newauth" className="cta">
+              <Link to="/auth" className="cta">
                 Login
               </Link>
             )}

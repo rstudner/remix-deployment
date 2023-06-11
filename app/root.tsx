@@ -12,7 +12,6 @@ import {
 } from '@remix-run/react';
 
 import sharedStyles from '~/styles/shared.css';
-import { FaDove } from 'react-icons/fa';
 import Error from '~/components/util/Error';
 
 export const meta = () => ({
@@ -50,6 +49,7 @@ function Document({ title, children }: any) {
     </html>
   );
 }
+
 export default function App() {
   return (
     <Document>

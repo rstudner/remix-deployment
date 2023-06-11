@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react';
-import { FaArrowRight, FaDollarSign, FaChartBar } from 'react-icons/fa';
+import { FaArrowRight, FaChartBar, FaDollarSign } from 'react-icons/fa';
 import type { HeadersFunction } from '@remix-run/node'; // or cloudflare/deno
 
 export default function Index() {

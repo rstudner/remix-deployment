@@ -1,9 +1,11 @@
 // /expenses/raw
 
 import { getExpenses } from '~/data/expenses.server';
-import { getUserFromSession } from '~/services/auth.server';
+import { authenticator } from '../services/auth.server';
 
 export async function loader({ request }) {
-  await getUserFromSession(request);
+  await authenticator.isAuthenticated(request, {
+    failureRedirect: '/auth',
+  });
   return getExpenses();
 }

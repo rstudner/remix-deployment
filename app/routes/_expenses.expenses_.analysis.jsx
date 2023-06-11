@@ -3,7 +3,7 @@ import ExpenseStatistics from '~/components/expenses/ExpenseStatistics';
 import Chart from '~/components/expenses/Chart';
 import { getExpenses } from '~/data/expenses.server';
 import { useLoaderData } from '@remix-run/react';
-import { getUserFromSession } from '~/services/auth.server';
+import { authenticator } from '../services/auth.server';
 
 export default function ExpensesAnalysisPage() {
   const expenses = useLoaderData();
@@ -17,8 +17,10 @@ export default function ExpensesAnalysisPage() {
 }
 
 export async function loader({ request }) {
-  const userId = await getUserFromSession(request);
-
+  let user = await authenticator.isAuthenticated(request, {
+    failureRedirect: '/auth',
+  });
+  const userId = user?.id;
   return await getExpenses(userId);
 }
 
