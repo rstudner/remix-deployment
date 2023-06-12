@@ -1,6 +1,12 @@
 import { prisma } from './database.server';
 
-export async function addExpense(expenseData, userId) {
+interface ExpenseData {
+  title: string
+  amount: string
+  date: string
+}
+
+export async function addExpense(expenseData: ExpenseData, userId: string) {
   try {
     return await prisma.expense.create({
       data: {
@@ -15,7 +21,7 @@ export async function addExpense(expenseData, userId) {
   }
 }
 
-export async function getExpenses(userId) {
+export async function getExpenses(userId:string) {
   try {
     return await prisma.expense.findMany({
       where: { userId },
@@ -26,7 +32,7 @@ export async function getExpenses(userId) {
   }
 }
 
-export async function updateExpense(id, expenseData) {
+export async function updateExpense(id: string, expenseData: ExpenseData) {
   try {
     return await prisma.expense.update({
       where: { id },
@@ -41,7 +47,7 @@ export async function updateExpense(id, expenseData) {
   }
 }
 
-export async function deleteExpense(id) {
+export async function deleteExpense(id:string) {
   try {
     return await prisma.expense.delete({
       where: { id },
@@ -51,7 +57,7 @@ export async function deleteExpense(id) {
   }
 }
 
-export async function getExpense(userId) {
+export async function getExpense(userId:string) {
   if (!userId) {
     throw new Error('Failed to get expenses.');
   }
